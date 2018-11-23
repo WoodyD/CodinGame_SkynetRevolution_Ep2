@@ -19,6 +19,11 @@ void Node::SwapCurNode() {
     nextNode = prevCurNode;
 }
 
+void Node::ClearData() {
+    stepsToNode = 0;
+    nodeWeight = 0;
+}
+
 int Node::GetCurrentNode() const {
     return Node::curNode;
 }
@@ -39,8 +44,9 @@ int Node::GetSteps() const {
     return stepsToNode;
 }
 
-int Node::GetWeight() const { 
+float Node::GetWeight() const {
     return nodeWeight;
 }
+
 
 

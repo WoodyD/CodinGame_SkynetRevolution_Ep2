@@ -16,15 +16,16 @@ public:
     void SwapCurNode();
     void ChangeStepsToNode(const int steps);
     void ChangeNodeWeight(const int nodeWeight);
+    void ClearData();
     
     int GetCurrentNode() const;
     int GetNextNode() const;
     int GetSteps() const;
-    int GetWeight() const;
+    float GetWeight() const;
     
 private:
     int curNode = 0;
     int nextNode = 0;
     int stepsToNode = 0;
-    int nodeWeight = 0;
+    float nodeWeight = 0;
 };

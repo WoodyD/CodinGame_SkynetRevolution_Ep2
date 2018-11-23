@@ -12,6 +12,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <stack> 
 
 #include "Node.hpp"
 
@@ -25,8 +26,8 @@ public:
     string GetNodeString(const int virusPos) const;
     
 private:
-    vector<Node> nodes;
-    vector<int> exits;
+    vector<Node> nodes = {};
+    vector<int> exits = {};
     Node GetNodeToRemove(const int virusNode) const;
     Node AStar(const int curVirNode, const int exitNode) const;
     

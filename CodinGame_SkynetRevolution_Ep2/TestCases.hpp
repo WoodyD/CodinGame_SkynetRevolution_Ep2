@@ -9,17 +9,19 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 
 #include "InputData.hpp"
 
 class TestCases{
 public:
-    TestCases();
-    static InputData TestCase(int caseNumber);
-private:
-    static InputData Case0;
-    static InputData Case1;
+    TestCases() {};
     
     InputData CreateTestCase0();
     InputData CreateTestCase1();
+    
+private:
+//    shared_ptr<InputData> testCase0;
+//    shared_ptr<InputData> testCase1;
+    
 };

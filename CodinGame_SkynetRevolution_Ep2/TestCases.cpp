@@ -8,22 +8,6 @@
 
 #include "TestCases.hpp"
 
-InputData TestCases::TestCase(int caseNumber) {
-    switch (caseNumber) {
-        case 1:
-            return Case1;
-            break;
-        default:
-            return Case0;
-            break;
-    }
-}
-
-TestCases::TestCases() {
-    TestCases::Case0 = CreateTestCase0();
-    TestCases::Case1 = CreateTestCase1();
-}
-
 InputData TestCases::CreateTestCase0() {
     InputData data;
     
