@@ -12,7 +12,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
-#include <stack> 
+#include <queue> 
 
 #include "Node.hpp"
 
@@ -23,12 +23,12 @@ public:
     InputData() = default;
     void AddNode(const int point1, const int point2);
     void AddExit(int exit);
-    string GetNodeString(const int virusPos) const;
+    string GetNodeString(const int virusPos);
     
 private:
     vector<Node> nodes = {};
     vector<int> exits = {};
-    Node GetNodeToRemove(const int virusNode) const;
-    Node AStar(const int curVirNode, const int exitNode) const;
+    Node GetNodeToRemove(const int virusNode);
+    Node AStar(const int curVirNode, const int exitNode);
     
 };

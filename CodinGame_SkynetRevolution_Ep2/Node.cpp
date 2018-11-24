@@ -13,15 +13,15 @@ Node::Node(int curNode, int nextNode) {
     Node::nextNode = nextNode;
 }
 
-void Node::SwapCurNode() {
+void Node::SwapNode() {
     int prevCurNode = curNode;
     curNode = nextNode;
     nextNode = prevCurNode;
 }
 
 void Node::ClearData() {
-    stepsToNode = 0;
-    nodeWeight = 0;
+    stepsToNode = 10000;
+    //nodeWeight = 0;
 }
 
 int Node::GetCurrentNode() const {
@@ -36,17 +36,49 @@ void Node::ChangeStepsToNode(const int steps) {
     Node::stepsToNode = steps;
 }
 
-void Node::ChangeNodeWeight(const int nodeWeight) { 
-    Node::nodeWeight = nodeWeight;
-}
+//void Node::ChangeNodeWeight(const int nodeWeight) { 
+//    Node::nodeWeight = nodeWeight;
+//}
 
 int Node::GetSteps() const {
     return stepsToNode;
 }
 
-float Node::GetWeight() const {
-    return nodeWeight;
+//float Node::GetWeight() const {
+//    return nodeWeight;
+//}
+
+bool Node::IsChecked() const { 
+    return isChecked;
 }
+
+void Node::CheckNode() { 
+    isChecked = true;
+}
+
+void Node::UncheckNode() { 
+    isChecked = false;
+}
+
+bool Node::IsNextNode(Node & node2) {
+//    if((curNode == node2.curNode && nextNode != node2.nextNode)
+//       || (curNode == node2.nextNode && nextNode != node2.curNode)){
+//        node2.SwapNode();
+//        return true;
+//    } else
+    if (nextNode == node2.nextNode && curNode != node2.curNode){
+        node2.SwapNode();
+        return true;
+    } else if (nextNode == node2.curNode && curNode != node2.nextNode) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+
 
 
 

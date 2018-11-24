@@ -17,7 +17,7 @@ void InputData::AddExit(int exit) {
     exits.push_back(exit);
 }
 
-std::string InputData::GetNodeString(const int virusPos) const { 
+std::string InputData::GetNodeString(const int virusPos) { 
     string nodeString = "";
     Node node = GetNodeToRemove(virusPos);
     
@@ -28,7 +28,7 @@ std::string InputData::GetNodeString(const int virusPos) const {
     return nodeString;
 }
 
-Node InputData::GetNodeToRemove(const int virusNode) const {
+Node InputData::GetNodeToRemove(const int virusNode) {
     for(Node node : nodes)
         node.ClearData();
         
@@ -37,40 +37,67 @@ Node InputData::GetNodeToRemove(const int virusNode) const {
     for(int exit : exits) {
         Node nodeToCheck = AStar(virusNode, exit);
         
-        if(nodeToRemove.GetWeight() < nodeToCheck.GetWeight()) {
+        if(nodeToRemove.GetSteps() > nodeToCheck.GetSteps()) {
             nodeToRemove = nodeToCheck;
         }
     }
     
+    //Remove node from nodes.
+    
     return nodeToRemove;
 }
 
-Node InputData::AStar(const int curVirNode, const int exitNode) const {
-    Node nodeToCheck = nodes.back();
-    
-    stack<Node> allNodesToCheck;
+Node InputData::AStar(const int curVirNode, const int exitNode) {
+    //stack<Node, vector<Node>> allNodes(nodes);
+    queue<Node> allNodesToCheck;
     vector<Node> allLastNodes;
     
-    
-    for(Node node : nodes){
-        node.ChangeNodeWeight(1);
-        node.ChangeStepsToNode(1);
-        
+    for(Node & node : nodes){
         if(node.GetCurrentNode() == curVirNode){
+            node.CheckNode();
+            node.ChangeStepsToNode(1);
+            //node.ChangeNodeWeight(1 / node.GetSteps());
             if(node.GetNextNode() == exitNode){
-                return node;
+                allLastNodes.push_back(node);
             }
             allNodesToCheck.push(node);
         } else if(node.GetNextNode() == curVirNode){
+            node.CheckNode();
+            node.SwapNode();
+            node.ChangeStepsToNode(1);
+            //node.ChangeNodeWeight(1 / node.GetSteps());
             if(node.GetCurrentNode() == exitNode){
-                return node;
+                allLastNodes.push_back(node);
             }
-            node.SwapCurNode();
             allNodesToCheck.push(node);
         }
     }
     
-    return nodeToCheck;
+    while(!allNodesToCheck.empty()){
+        Node nodeToCheck = allNodesToCheck.front();
+        for(Node & node : nodes){
+            if(!node.IsChecked() && nodeToCheck.IsNextNode(node)){
+                node.CheckNode();
+                node.ChangeStepsToNode(nodeToCheck.GetSteps() + 1);
+                //node.ChangeNodeWeight(nodeToCheck.GetWeight() + nodeToCheck.GetWeight()/node.GetSteps());
+                if (node.GetNextNode() == exitNode) {
+                    allLastNodes.push_back(node);
+                } else {
+                    allNodesToCheck.push(node);
+                }
+            }
+        }
+        allNodesToCheck.pop();
+    }
+    
+    Node nodeToRemove = allLastNodes.back();
+    for(Node node : allLastNodes){
+        if(nodeToRemove.GetSteps() > node.GetSteps()) {
+            nodeToRemove = node;
+        }
+    }
+    
+    return nodeToRemove;
 }
 
 
