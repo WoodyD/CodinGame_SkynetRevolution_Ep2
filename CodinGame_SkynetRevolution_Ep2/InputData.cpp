@@ -17,21 +17,18 @@ void InputData::AddExit(int exit) {
     exits.push_back(exit);
 }
 
-std::string InputData::GetNodeString(const int virusPos) { 
+string InputData::GetNodeString(const int virusPos) { 
     string nodeString = "";
     Node node = GetNodeToRemove(virusPos);
     
-    nodeString += node.GetCurrentNode();
+    nodeString += to_string(node.GetCurrentNode());
     nodeString += " ";
-    nodeString += node.GetNextNode();
+    nodeString += to_string(node.GetNextNode());
     
     return nodeString;
 }
 
 Node InputData::GetNodeToRemove(const int virusNode) {
-    for(Node node : nodes)
-        node.ClearData();
-        
     Node nodeToRemove = nodes.back();
     
     for(int exit : exits) {
@@ -43,14 +40,18 @@ Node InputData::GetNodeToRemove(const int virusNode) {
     }
     
     //Remove node from nodes.
+    RemoveFromNodes(nodeToRemove);
     
     return nodeToRemove;
 }
 
 Node InputData::AStar(const int curVirNode, const int exitNode) {
-    //stack<Node, vector<Node>> allNodes(nodes);
+    Node nodeToRemove = nodes.back();
     queue<Node> allNodesToCheck;
     vector<Node> allLastNodes;
+    
+    for(Node & node : nodes)
+        node.ClearData();
     
     for(Node & node : nodes){
         if(node.GetCurrentNode() == curVirNode){
@@ -90,15 +91,34 @@ Node InputData::AStar(const int curVirNode, const int exitNode) {
         allNodesToCheck.pop();
     }
     
-    Node nodeToRemove = allLastNodes.back();
-    for(Node node : allLastNodes){
-        if(nodeToRemove.GetSteps() > node.GetSteps()) {
-            nodeToRemove = node;
+    if(!allLastNodes.empty()){
+        nodeToRemove = allLastNodes.back();
+        for(Node node : allLastNodes){
+            if(nodeToRemove.GetSteps() > node.GetSteps()) {
+                nodeToRemove = node;
+            }
         }
+    } else {
+        nodeToRemove.ChangeStepsToNode(10000);
     }
     
     return nodeToRemove;
 }
+
+void InputData::RemoveFromNodes(Node &nodeToRemove) {
+    int nodeIndex = -1;
+    for(Node & node : nodes){
+        nodeIndex++;
+        if(node.IsEqual(nodeToRemove))
+            break;
+    }
+    
+    vector<Node>::iterator it = nodes.begin();
+    advance(it, nodeIndex);
+    nodes.erase(it);
+}
+
+
 
 
 

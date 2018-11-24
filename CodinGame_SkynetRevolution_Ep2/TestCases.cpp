@@ -31,6 +31,10 @@ InputData TestCases::CreateTestCase0() {
 }
 
 InputData TestCases::CreateTestCase1() {
+    //In: 0 | Out: 3 4
+    //In: 3 | Out: 3 5
+    //In: 6 | Out: 6 5
+    //In: 3 | Out: 7 4
     InputData data;
     
     data.AddNode(6, 2); data.AddNode(7, 3); data.AddNode(6, 3);

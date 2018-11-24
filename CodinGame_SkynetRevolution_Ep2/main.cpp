@@ -27,6 +27,10 @@ int main()
         int SI; // The index of the node on which the Skynet agent is positioned this turn
         cin >> SI; cin.ignore();
         
-        cout << data.GetNodeString(SI) << endl;
+        string nodeToRemove = data.GetNodeString(SI);
+        
+        cerr << "Remove: " << endl;
+        cout << nodeToRemove << endl;
+
     }
 }

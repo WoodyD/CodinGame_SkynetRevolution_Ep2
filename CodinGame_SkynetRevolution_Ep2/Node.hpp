@@ -25,7 +25,8 @@ public:
     int GetSteps() const;
     //float GetWeight() const;
     bool IsChecked() const;
-    bool IsNextNode(Node & node2);
+    bool IsNextNode(Node & node);
+    bool IsEqual(const Node & node) const;
     
 private:
     int curNode = 0;

@@ -21,6 +21,7 @@ void Node::SwapNode() {
 
 void Node::ClearData() {
     stepsToNode = 10000;
+    isChecked = false;
     //nodeWeight = 0;
 }
 
@@ -60,16 +61,25 @@ void Node::UncheckNode() {
     isChecked = false;
 }
 
-bool Node::IsNextNode(Node & node2) {
+bool Node::IsNextNode(Node & node) {
 //    if((curNode == node2.curNode && nextNode != node2.nextNode)
 //       || (curNode == node2.nextNode && nextNode != node2.curNode)){
 //        node2.SwapNode();
 //        return true;
 //    } else
-    if (nextNode == node2.nextNode && curNode != node2.curNode){
-        node2.SwapNode();
+    if (nextNode == node.nextNode && curNode != node.curNode){
+        node.SwapNode();
         return true;
-    } else if (nextNode == node2.curNode && curNode != node2.nextNode) {
+    } else if (nextNode == node.curNode && curNode != node.nextNode) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Node::IsEqual(const Node &node) const{
+    if((curNode == node.curNode && nextNode == node.nextNode)
+       || (curNode == node.nextNode && nextNode == node.curNode)){
         return true;
     } else {
         return false;

@@ -30,5 +30,6 @@ private:
     vector<int> exits = {};
     Node GetNodeToRemove(const int virusNode);
     Node AStar(const int curVirNode, const int exitNode);
+    void RemoveFromNodes(Node &node);
     
 };

@@ -6,15 +6,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
-            timestampString = "564763275.157295"
+            timestampString = "564767292.556113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "InputData::AStar(const int curVirNode, const int exitNode)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InputData::AStar(int, int)"
+                  moduleName = "CodinGame_SkynetRevolution_Ep2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Codingame/CodinGame_SkynetRevolution_Ep2/CodinGame_SkynetRevolution_Ep2/InputData.cpp"
+                  timestampString = "564763688.406899"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "2833">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InputData::AStar(int, int)"
+                  moduleName = "CodinGame_SkynetRevolution_Ep2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Codingame/CodinGame_SkynetRevolution_Ep2/CodinGame_SkynetRevolution_Ep2/InputData.cpp"
+                  timestampString = "564763688.410693"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "3260">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
+            timestampString = "564767292.556233"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "InputData::AStar(const int curVirNode, const int exitNode)"
             landmarkType = "7">
          </BreakpointContent>
