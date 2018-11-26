@@ -69,12 +69,12 @@ Node InputData::AStar(const int curVirNode, const int exitNode) {
             allNodesToCheck.push(node);
         } else if(node.GetNextNode() == curVirNode){
             node.CheckNode();
-            node.SwapNode();
             node.ChangeStepsToNode(1);
-            if(node.GetNextNode() == exitNode){
+            if(node.GetCurrentNode() == exitNode){
                 allLastNodes.push_back(node);
                 node.ChangeNodeWeight(node.GetWeight() + 1);
             }
+            node.SwapNode();
             allNodesToCheck.push(node);
         }
     }

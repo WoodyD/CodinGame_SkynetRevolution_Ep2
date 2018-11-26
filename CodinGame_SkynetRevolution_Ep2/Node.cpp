@@ -14,9 +14,9 @@ Node::Node(int curNode, int nextNode) {
 }
 
 void Node::SwapNode() {
-    int * prevCurNode = & curNode;
+    int prevCurNode = curNode;
     curNode = nextNode;
-    nextNode = * prevCurNode;
+    nextNode = prevCurNode;
 }
 
 void Node::ClearData() {
