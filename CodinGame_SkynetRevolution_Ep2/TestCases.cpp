@@ -15,15 +15,18 @@ InputData TestCases::CreateTestCase0() {
     int L; // the number of links
     int E; // the number of exit gateways
     cin >> N >> L >> E; cin.ignore();
+    cerr << N << L << E << endl;
     for (int i = 0; i < L; i++) {
         int N1; // N1 and N2 defines a link between these nodes
         int N2;
         cin >> N1 >> N2; cin.ignore();
+        cerr << "N1 N2: " << N1 << N2 << endl;
         data.AddNode(N1, N2);
     }
     for (int i = 0; i < E; i++) {
         int EI; // the index of a gateway node
         cin >> EI; cin.ignore();
+        cerr << "EI: " << EI << endl;
         data.AddExit(EI);
     }
     
@@ -45,6 +48,27 @@ InputData TestCases::CreateTestCase1() {
     
     data.AddExit(4);
     data.AddExit(5);
+    
+    return data;
+}
+
+InputData TestCases::CreateTestCase2() {
+    //In: 0 | Out: 1 3
+    //In: 9 | Out: 2 5
+    //In: 6 | Out: 
+    //In: 3 | Out:
+    InputData data;
+    
+    data.AddNode(2, 6); data.AddNode(9, 7); data.AddNode(0, 7);
+    data.AddNode(9, 8); data.AddNode(8, 2); data.AddNode(7, 1);
+    data.AddNode(9, 2); data.AddNode(3, 1); data.AddNode(2, 5);
+    data.AddNode(0, 8); data.AddNode(4, 1); data.AddNode(9, 1);
+    data.AddNode(0, 9); data.AddNode(2, 1);
+    
+    data.AddExit(3);
+    data.AddExit(4);
+    data.AddExit(5);
+    data.AddExit(6);
     
     return data;
 }

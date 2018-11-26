@@ -19,6 +19,7 @@ public:
     
     InputData CreateTestCase0();
     InputData CreateTestCase1();
+    InputData CreateTestCase2();
     
 private:
 //    shared_ptr<InputData> testCase0;
