@@ -17,11 +17,13 @@ void Node::SwapNode() {
     int prevCurNode = curNode;
     curNode = nextNode;
     nextNode = prevCurNode;
+    isSwapedThisTurn = true;
 }
 
 void Node::ClearData() {
     stepsToNode = 10000;
     isChecked = false;
+    isSwapedThisTurn = false;
     //nodeWeight = 0;
 }
 
@@ -45,7 +47,7 @@ int Node::GetSteps() const {
     return stepsToNode;
 }
 
-float Node::GetWeight() const {
+int Node::GetWeight() const {
     return nodeWeight;
 }
 
@@ -62,7 +64,7 @@ void Node::UncheckNode() {
 }
 
 bool Node::IsNextNode(Node & node) {
-    if (nextNode == node.nextNode && curNode != node.curNode){
+    if (!node.isSwapedThisTurn && nextNode == node.nextNode && curNode != node.curNode){
         node.SwapNode();
         return true;
     } else if (nextNode == node.curNode && curNode != node.nextNode) {

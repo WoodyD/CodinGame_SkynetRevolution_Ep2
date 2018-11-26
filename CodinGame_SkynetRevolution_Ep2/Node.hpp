@@ -23,7 +23,7 @@ public:
     int GetCurrentNode() const;
     int GetNextNode() const;
     int GetSteps() const;
-    float GetWeight() const;
+    int GetWeight() const;
     bool IsChecked() const;
     bool IsNextNode(Node & node);
     bool IsEqual(const Node & node) const;
@@ -32,6 +32,7 @@ private:
     int curNode = 0;
     int nextNode = 0;
     int stepsToNode = 10000;
-    float nodeWeight = 0;
+    int nodeWeight = 0;
     bool isChecked = false;
+    bool isSwapedThisTurn = false;
 };

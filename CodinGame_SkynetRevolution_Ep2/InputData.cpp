@@ -64,7 +64,7 @@ Node InputData::AStar(const int curVirNode, const int exitNode) {
             node.ChangeStepsToNode(1);
             if(node.GetNextNode() == exitNode){
                 allLastNodes.push_back(node);
-                node.ChangeNodeWeight(node.GetWeight() + 1);
+                //node.ChangeNodeWeight(node.GetWeight() + 1);
             }
             allNodesToCheck.push(node);
         } else if(node.GetNextNode() == curVirNode){
@@ -72,7 +72,7 @@ Node InputData::AStar(const int curVirNode, const int exitNode) {
             node.ChangeStepsToNode(1);
             if(node.GetCurrentNode() == exitNode){
                 allLastNodes.push_back(node);
-                node.ChangeNodeWeight(node.GetWeight() + 1);
+                //node.ChangeNodeWeight(node.GetWeight() + 1);
             }
             node.SwapNode();
             allNodesToCheck.push(node);
@@ -84,29 +84,36 @@ Node InputData::AStar(const int curVirNode, const int exitNode) {
         nodeToCheck.CheckNode();
         for(Node & node : nodes){
             if(nodeToCheck.IsNextNode(node)){
-                if(!node.IsChecked()){
+                if (node.GetNextNode() == exitNode){
+                    node.ChangeStepsToNode(nodeToCheck.GetSteps() + 1);
+                    allLastNodes.push_back(node);
+                    //node.ChangeNodeWeight(nodeToCheck.GetWeight() + 1);
+                } else if(!node.IsChecked()){
                     node.ChangeStepsToNode(nodeToCheck.GetSteps() + 1);
                     //node.ChangeNodeWeight(nodeToCheck.GetWeight() + 1);
-                    if (node.GetNextNode() == exitNode) {
-                        allLastNodes.push_back(node);
-                        node.ChangeNodeWeight(nodeToCheck.GetWeight() + 1);
-                    } else {
-                        allNodesToCheck.push(node);
-                        node.CheckNode();
-                    }
+                    allNodesToCheck.push(node);
+                    //node.CheckNode();
                 }
             }
         }
+        
         allNodesToCheck.pop();
     }
     
     if(!allLastNodes.empty()){
+        int weight = 0;
         nodeToRemove = allLastNodes.back();
         for(Node node : allLastNodes){
+            weight++;
             if(nodeToRemove.GetSteps() > node.GetSteps()) {
                 nodeToRemove = node;
             }
+//            else if(nodeToRemove.GetSteps() == node.GetSteps()){
+//                if(nodeToRemove.GetWeight() < node.GetWeight())
+//                    nodeToRemove = node;
+//            }
         }
+        nodeToRemove.ChangeNodeWeight(weight);
     } else {
         nodeToRemove.ChangeStepsToNode(10000);
     }

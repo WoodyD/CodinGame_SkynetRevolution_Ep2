@@ -28,7 +28,6 @@ public:
 private:
     vector<Node> nodes = {};
     vector<int> exits = {};
-    //queue<int> 
     Node GetNodeToRemove(const int virusNode);
     Node AStar(const int curVirNode, const int exitNode);
     void RemoveFromNodes(Node &node);
