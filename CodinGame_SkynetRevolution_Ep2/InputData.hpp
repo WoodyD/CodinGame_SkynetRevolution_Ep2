@@ -13,9 +13,9 @@
 #include <algorithm>
 #include <vector>
 #include <queue> 
+#include <iostream>
 
 #include "Node.hpp"
-#include <iostream>
 
 // !! DONT USE NAMESPACE GLOBALY IN HEADER FILE
 //using namespace std;
@@ -45,7 +45,7 @@ private:
     std::vector<Node> nodes = {};
     std::vector<int> exits = {};
     Node GetNodeToRemove(const int virusPos);
-    Node AStar(const int curVirNode, const int exitNode);
+    Node* AStar(const int curVirNode, const int exitNode);
     
     void RemoveFromNodes(Node &node);
     void SkipNodesWeight();

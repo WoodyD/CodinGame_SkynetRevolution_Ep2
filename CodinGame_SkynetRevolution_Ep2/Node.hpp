@@ -8,10 +8,15 @@
 
 #pragma once
 
+#include <iostream>
+
 struct Node{
 public:
-    Node() = delete;
+    Node(){};
     Node(int curNode, int nextNode);
+//    Node(const Node& n) {
+//        std::cout << "Node copy constructor" << std::endl;
+//    };
     
     void SwapNode();
     void ChangeStepsToNode(const int steps);

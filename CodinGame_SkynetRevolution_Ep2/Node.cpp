@@ -21,7 +21,7 @@ void Node::SwapNode() {
 }
 
 void Node::ClearData() {
-    stepsToNode = 10000;
+    //stepsToNode = 10000;
     isChecked = false;
     isSwapedThisTurn = false;
     //nodeWeight = 0;
@@ -82,10 +82,4 @@ bool Node::IsEqual(const Node &node) const{
         return false;
     }
 }
-
-
-
-
-
-
 
