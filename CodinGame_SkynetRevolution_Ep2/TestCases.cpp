@@ -8,6 +8,8 @@
 
 #include "TestCases.hpp"
 
+using namespace std;
+
 InputData TestCases::CreateTestCase0() {
     InputData data;
     

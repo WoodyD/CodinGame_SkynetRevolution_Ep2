@@ -7,8 +7,31 @@
 //
 
 #include "InputData.hpp"
+#include <optional>
 
-void InputData::AddNode(const int point1, const int point2) { 
+// The way to not show private methods in header file
+namespace
+{
+    //optional parameters "old way"
+    void Blah(InputData* x)
+    {
+        if (x)
+        {
+            x->GetNodeString(0);
+        }
+    }
+
+    //optional parameters "new way"
+    void Blah(std::optional<InputData> x)
+    {
+        if (x)
+        {
+            x->GetNodeString(0);
+        }
+    }
+}
+
+void InputData::AddNode(const int point1, const int point2) {
     Node node(point1, point2);
     nodes.push_back(node);
 }
@@ -17,23 +40,23 @@ void InputData::AddExit(int exit) {
     exits.push_back(exit);
 }
 
-string InputData::GetNodeString(const int virusPos) { 
-    string nodeString = "";
+std::string InputData::GetNodeString(const int virusPos) {
+    std::string nodeString = "";
     Node node = GetNodeToRemove(virusPos);
     
-    nodeString += to_string(node.GetCurrentNode());
+    nodeString += std::to_string(node.GetCurrentNode());
     nodeString += " ";
-    nodeString += to_string(node.GetNextNode());
+    nodeString += std::to_string(node.GetNextNode());
     
     return nodeString;
 }
 
-Node InputData::GetNodeToRemove(const int virusNode) {
+Node InputData::GetNodeToRemove(const int virusPos) {
     Node nodeToRemove = nodes.back();
     
     
     for(int exit : exits) {
-        Node nodeToCheck = AStar(virusNode, exit);
+        Node nodeToCheck = AStar(virusPos, exit);
         
         if(nodeToRemove.GetSteps() > nodeToCheck.GetSteps()) {
             nodeToRemove = nodeToCheck;
@@ -50,10 +73,10 @@ Node InputData::GetNodeToRemove(const int virusNode) {
     return nodeToRemove;
 }
 
-Node InputData::AStar(const int curVirNode, const int exitNode) {
+Node InputData::AStar (const int curVirNode, const int exitNode) {
     Node nodeToRemove = nodes.back();
-    queue<Node> allNodesToCheck;
-    vector<Node> allLastNodes;
+    std::queue<Node*> allNodesToCheck;
+    std::vector<Node> allLastNodes;
     
     for(Node & node : nodes)
         node.ClearData();
@@ -64,35 +87,30 @@ Node InputData::AStar(const int curVirNode, const int exitNode) {
             node.ChangeStepsToNode(1);
             if(node.GetNextNode() == exitNode){
                 allLastNodes.push_back(node);
-                //node.ChangeNodeWeight(node.GetWeight() + 1);
             }
-            allNodesToCheck.push(node);
+            allNodesToCheck.push(&node);
         } else if(node.GetNextNode() == curVirNode){
             node.CheckNode();
             node.ChangeStepsToNode(1);
             if(node.GetCurrentNode() == exitNode){
                 allLastNodes.push_back(node);
-                //node.ChangeNodeWeight(node.GetWeight() + 1);
             }
             node.SwapNode();
-            allNodesToCheck.push(node);
+            allNodesToCheck.push(&node);
         }
     }
     
     while(!allNodesToCheck.empty()){
-        Node nodeToCheck = allNodesToCheck.front();
-        nodeToCheck.CheckNode();
+        Node* nodeToCheck = allNodesToCheck.front();
+        nodeToCheck->CheckNode();
         for(Node & node : nodes){
-            if(nodeToCheck.IsNextNode(node)){
+            if(nodeToCheck->IsNextNode(node)){
                 if (node.GetNextNode() == exitNode){
-                    node.ChangeStepsToNode(nodeToCheck.GetSteps() + 1);
+                    node.ChangeStepsToNode(nodeToCheck->GetSteps() + 1);
                     allLastNodes.push_back(node);
-                    //node.ChangeNodeWeight(nodeToCheck.GetWeight() + 1);
                 } else if(!node.IsChecked()){
-                    node.ChangeStepsToNode(nodeToCheck.GetSteps() + 1);
-                    //node.ChangeNodeWeight(nodeToCheck.GetWeight() + 1);
-                    allNodesToCheck.push(node);
-                    //node.CheckNode();
+                    node.ChangeStepsToNode(nodeToCheck->GetSteps() + 1);
+                    allNodesToCheck.push(&node);
                 }
             }
         }
@@ -103,15 +121,14 @@ Node InputData::AStar(const int curVirNode, const int exitNode) {
     if(!allLastNodes.empty()){
         int weight = 0;
         nodeToRemove = allLastNodes.back();
-        for(Node node : allLastNodes){
-            weight++;
+        for(Node & node : allLastNodes){
             if(nodeToRemove.GetSteps() > node.GetSteps()) {
                 nodeToRemove = node;
             }
-//            else if(nodeToRemove.GetSteps() == node.GetSteps()){
-//                if(nodeToRemove.GetWeight() < node.GetWeight())
-//                    nodeToRemove = node;
-//            }
+        }
+        for(Node & node : allLastNodes){
+            if(node.GetSteps() == nodeToRemove.GetSteps())
+                weight++;
         }
         nodeToRemove.ChangeNodeWeight(weight);
     } else {
@@ -129,7 +146,7 @@ void InputData::RemoveFromNodes(Node &nodeToRemove) {
             break;
     }
     
-    vector<Node>::iterator it = nodes.begin();
+    std::vector<Node>::iterator it = nodes.begin();
     advance(it, nodeIndex);
     nodes.erase(it);
 }

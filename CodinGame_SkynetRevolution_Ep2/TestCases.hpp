@@ -21,8 +21,4 @@ public:
     InputData CreateTestCase1();
     InputData CreateTestCase2();
     
-private:
-//    shared_ptr<InputData> testCase0;
-//    shared_ptr<InputData> testCase1;
-    
 };

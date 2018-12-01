@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
-            timestampString = "564964375.6874501"
+            timestampString = "565371783.123426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "InputData::AStar(const int curVirNode, const int exitNode)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "InputData::AStar (const int curVirNode, const int exitNode)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
-            timestampString = "564964375.687598"
+            timestampString = "565371783.124476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "InputData::AStar(const int curVirNode, const int exitNode)"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "InputData::AStar (const int curVirNode, const int exitNode)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -75,12 +75,12 @@
             condition = "virusNode == 9"
             continueAfterRunningActions = "No"
             filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
-            timestampString = "564964375.687724"
+            timestampString = "565371783.125463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "InputData::GetNodeToRemove(const int virusNode)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "InputData::GetNodeToRemove(const int virusPos)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -91,12 +91,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
-            timestampString = "564964375.687829"
+            timestampString = "565371783.1262079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "InputData::AStar(const int curVirNode, const int exitNode)"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "InputData::AStar (const int curVirNode, const int exitNode)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -107,12 +107,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
-            timestampString = "564964375.6879179"
+            timestampString = "565371783.1268539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "InputData::AStar(const int curVirNode, const int exitNode)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "InputData::AStar (const int curVirNode, const int exitNode)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -124,12 +124,12 @@
             condition = "virusNode == 9"
             continueAfterRunningActions = "No"
             filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
-            timestampString = "564964375.6880029"
+            timestampString = "565371783.12748"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "InputData::GetNodeToRemove(const int virusNode)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "InputData::GetNodeToRemove(const int virusPos)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -141,12 +141,12 @@
             condition = "curVirNode == 9"
             continueAfterRunningActions = "No"
             filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
-            timestampString = "564964375.6880881"
+            timestampString = "565371783.128113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "InputData::AStar(const int curVirNode, const int exitNode)"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "InputData::AStar (const int curVirNode, const int exitNode)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -180,6 +180,23 @@
                   offsetFromSymbolStart = "5648">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            condition = "curVirNode == 6"
+            continueAfterRunningActions = "No"
+            filePath = "CodinGame_SkynetRevolution_Ep2/InputData.cpp"
+            timestampString = "565371783.1287301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "InputData::AStar (const int curVirNode, const int exitNode)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

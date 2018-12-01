@@ -15,23 +15,40 @@
 #include <queue> 
 
 #include "Node.hpp"
+#include <iostream>
 
-using namespace std;
+// !! DONT USE NAMESPACE GLOBALY IN HEADER FILE
+//using namespace std;
 
 class InputData{
 public:
-    InputData() = default;
+    InputData()
+    {
+        std::cout << "InputData constructor" << std::endl;
+    }
+    
+    InputData(const InputData& x)
+    {
+        std::cout << "InputData copy constructor" << std::endl;
+    }
+    
+//    ˜InputData()
+//    {
+//        std::cout << "InputData destructor" << std::endl;
+//    }
+
     void AddNode(const int point1, const int point2);
     void AddExit(int exit);
-    string GetNodeString(const int virusPos);
+    std::string GetNodeString(const int virusPos);
     
 private:
-    vector<Node> nodes = {};
-    vector<int> exits = {};
-    Node GetNodeToRemove(const int virusNode);
+    std::vector<Node> nodes = {};
+    std::vector<int> exits = {};
+    Node GetNodeToRemove(const int virusPos);
     Node AStar(const int curVirNode, const int exitNode);
+    
     void RemoveFromNodes(Node &node);
     void SkipNodesWeight();
     void UncheckNodes();
-    
 };
+
