@@ -36,7 +36,7 @@ public:
 private:
     int curNode = 0;
     int nextNode = 0;
-    int stepsToNode = 10000;
+    int stepsToNode = 0;
     int nodeWeight = 0;
     bool isChecked = false;
     bool isSwapedThisTurn = false;
