@@ -19,7 +19,7 @@ using namespace std;
 int main()
 {
     TestCases test;
-    InputData data = test.CreateTestCase1();
+    InputData data = test.CreateTestCase2();
     
     // game loop
     while (1) {

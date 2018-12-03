@@ -55,10 +55,10 @@ InputData TestCases::CreateTestCase1() {
 }
 
 InputData TestCases::CreateTestCase2() {
-    //In: 0 | Out: 1 3
-    //In: 9 | Out: 2 5
-    //In: 6 | Out: 
-    //In: 3 | Out:
+    //In: 0 | Out: 1 4
+    //In: 9 | Out: 2 6
+    //In: 1 | Out: 1 3
+    //In: 2 | Out: 2 5
     InputData data;
     
     data.AddNode(2, 6); data.AddNode(9, 7); data.AddNode(0, 7);
@@ -75,6 +75,29 @@ InputData TestCases::CreateTestCase2() {
     return data;
 }
 
-
-
+InputData TestCases::CreateTestCase3() {
+    //In: 8 | Out: 9 0
+    //In: 9 | Out: 5 0
+    //In: 5 | Out: 4 0
+    //In: 4 | Out: 3 0
+    //In: 3 | Out: 2 0
+    //In: 2 | Out: 1 0
+    //In: 1 | Out: 6 7
+    //In: 6 | Out: 6 0
+    
+    InputData data;
+    
+    data.AddNode(0, 9); data.AddNode(6, 1); data.AddNode(0, 6);
+    data.AddNode(0, 3); data.AddNode(0, 2); data.AddNode(11, 5);
+    data.AddNode(10, 11); data.AddNode(11, 9); data.AddNode(10, 9);
+    data.AddNode(8, 9); data.AddNode(5, 9); data.AddNode(4, 5);
+    data.AddNode(0, 4); data.AddNode(0, 1); data.AddNode(3, 4);
+    data.AddNode(8, 10); data.AddNode(0, 5); data.AddNode(1, 2);
+    data.AddNode(6, 7); data.AddNode(2, 3);
+    
+    data.AddExit(0);
+    data.AddExit(7);
+    
+    return data;
+}
 

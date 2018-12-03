@@ -52,45 +52,66 @@ std::string InputData::GetNodeString(const int virusNode) {
 }
 
 Node InputData::GetNodeToRemove(const int virusPos) {
-    Node* nodeToRemove = nullptr;
+    Node nodeToRemove(-1, -1);
+    nodeToRemove.ChangeStepsToNode(1000);
+    std::vector<Node> curNodesThisStep;
     
     for(int exit : exits) {
         Node nodeToCheck = AStar(virusPos, exit);
-//        if(!nodeToCheck)
-//            continue;
-        if(!nodeToRemove){
-            nodeToRemove = &nodeToCheck;
-            continue;
-        }
-        if(nodeToCheck.GetCurrentNode() == nodeToRemove->GetCurrentNode()){
-            nodeToCheck.ChangeNodeWeight(nodeToCheck.GetWeight() + 1);
-            nodeToRemove->ChangeNodeWeight(nodeToRemove->GetWeight() + 1);
+        
+        if (!curNodesThisStep.empty()){
+            for (auto& curNode : curNodesThisStep){
+                if (nodeToRemove.GetCurrentNode() == curNode.GetCurrentNode()
+                    && nodeToRemove.GetNextNode() != curNode.GetNextNode()
+                    && !curNode.IsChecked()){
+                    nodeToRemove.ChangeNodeWeight(nodeToRemove.GetWeight() + 1);
+                    curNode.CheckNode();
+                }
+                if (nodeToCheck.GetCurrentNode() == curNode.GetCurrentNode()
+                    && nodeToCheck.GetNextNode() != curNode.GetNextNode()
+                    && !curNode.IsChecked()){
+                    nodeToCheck.ChangeNodeWeight(nodeToCheck.GetWeight() + 1);
+                    curNode.CheckNode();
+                }
+            }
         }
         
-        if(nodeToRemove->GetSteps() > nodeToCheck.GetSteps()) {
-            nodeToRemove = &nodeToCheck;
-        } else if(nodeToRemove->GetSteps() == nodeToCheck.GetSteps()){
-            if(nodeToRemove->GetWeight() < nodeToCheck.GetWeight())
-                nodeToRemove = &nodeToCheck;
+        curNodesThisStep.push_back(nodeToCheck);
+        
+        std::cerr << "Node to check: " << nodeToCheck.GetCurrentNode() << " " <<
+        nodeToCheck.GetNextNode() << " Steps: " << nodeToCheck.GetSteps() << " Weight: " <<
+        nodeToCheck.GetWeight() << std::endl;
+        
+        std::cerr << "Node to remove: " << nodeToRemove.GetCurrentNode() << " " <<
+        nodeToRemove.GetNextNode() << " Steps: " << nodeToRemove.GetSteps() << " Weight: " <<
+        nodeToRemove.GetWeight() << std::endl;
+        
+        if(nodeToRemove.GetSteps() > nodeToCheck.GetSteps()) {
+            nodeToRemove = nodeToCheck;
+        } else if(nodeToRemove.GetSteps() == nodeToCheck.GetSteps()){
+            if(nodeToRemove.GetWeight() < nodeToCheck.GetWeight())
+                nodeToRemove = nodeToCheck;
         }
     }
     
-    Node removedNode;
-    if(nodeToRemove)
-        removedNode = *nodeToRemove;
-    else{
-        for(auto& exit : exits){
-            for(auto& node : nodes)
-                if(node.GetCurrentNode() == exit || node.GetNextNode() == exit)
-                    removedNode = node;
+    if(nodeToRemove.IsEqual(Node(-1, -1))){
+        for(int& exit : exits){
+            for(Node& node: nodes){
+                if(node.GetCurrentNode() == exit || node.GetNextNode() == exit){
+                    nodeToRemove = node;
+                    break;
+                }
+            }
+            if(!nodeToRemove.IsEqual(Node(-1, -1)))
+                break;
         }
     }
     
-    RemoveFromNodes(removedNode);
+    RemoveFromNodes(nodeToRemove);
     
     SkipNodesWeight();
     
-    return removedNode;
+    return nodeToRemove;
 }
 
 Node InputData::AStar (const int curVirNode, const int exitNode) {
